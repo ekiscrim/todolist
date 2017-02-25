@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+ <h2 class="page-header">Latest Todos</h2>
+ <table class="table table-striped">
+    <thead>
+      <tr>
+      	<th>#</th>
+        <th>Todo</th>
+        <th>Due Date</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    	{% for todo in todos %}
+      <tr>
+
+      	<td>{{todo.id}}</td>
+        <td>{{todo.name}}</td>
+        <td>{{todo.dueDate|date('d-F-Y')}}</td>
+        <td><a href="/todo/details/{{todo.id}}" class="btn btn-success">View</a>
+        <a href="/todo/edit/{{todo.id}}" class="btn btn-default">Edit</a>
+        <a href="/todo/delete/{{todo.id}}" class="btn btn-danger">Delete</a>
+        <a href="/todo/ended/{{todo.id}}" class="btn btn-primary"><span class="glyphicon glyphicon-ok"</span></a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+ <h2 class="page-header">Ended Todos</h2>
+ <table class="table table-striped">
+    <thead>
+      <tr>
+      	<th>#</th>
+        <th>Todo</th>
+        <th>Due Date</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    	{% for query in todosEndedquery %}
+      <tr>
+
+      	<td>{{query.id}}</td>
+        <td>{{query.name}}</td>
+        <td>{{query.dueDate|date('d-F-Y')}}</td>
+        <td>
+        <a href="/todo/delete/{{query.id}}" class="btn btn-danger">Delete</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
